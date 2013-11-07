@@ -1,14 +1,31 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: :destroy
+  before_action :admin_user, only: [:index, :toggle_admin, :destroy]
   
   def index
     @users = User.paginate(page: params[:page])
   end
 
+  def toggle_admin
+    @user = User.find(params[:id])
+    if !current_user?(@user)
+      @user.toggle!(:admin)
+      @user.save
+      flash[:success] = "Admin status changed"
+      redirect_to(users_path)
+    else
+      flash[:success] = "You cannot revoke your own admin status"
+      redirect_to(users_path)
+    end
+  end
+
   def show
-  	@user = User.find(params[:id])
+    if current_user?(User.find(params[:id])) || current_user.admin?
+  	 @user = User.find(params[:id])
+    else
+      redirect_to(root_url)
+    end
   end 
   
   def new
@@ -69,7 +86,7 @@ class UsersController < ApplicationController
     #end
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+      redirect_to(root_url) unless current_user?(@user) || current_user.admin?
     end
     def admin_user
       redirect_to(root_url) unless current_user.admin?
