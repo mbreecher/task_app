@@ -40,7 +40,7 @@ describe "UserPages" do
           end
         end
         #test
-        it "should have delete links" do
+        it "should have control links" do
           page.should have_link('delete')
           page.should have_link('toggle admin')
           # save_and_open_page

@@ -1,0 +1,11 @@
+<li>
+	<p>
+		<%= link_to customer.name, customer %>
+		<a>|</a>
+		<%= link_to "edit", edit_customer_path(customer) %>
+		<a>|</a>
+		<% if current_user.admin? %>
+			<%= link_to "delete", customer, method: :delete, data: {confirm: "You Sure"} %>
+		<% end %>
+	</p>
+</li>

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131105044429) do
+ActiveRecord::Schema.define(version: 20131112012114) do
+
+  create_table "customers", force: true do |t|
+    t.integer  "csm_id"
+    t.string   "name"
+    t.date     "start"
+    t.date     "fiscal_ye"
+    t.date     "next_per_end"
+    t.date     "next_target"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

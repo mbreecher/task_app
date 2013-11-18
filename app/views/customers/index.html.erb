@@ -1,0 +1,14 @@
+<% provide(:title, 'All customers') %>
+<div><h1>All customers</h1>
+
+<% if current_user.admin? %>
+	<p><%= link_to "Create New Customer", new_customer_path, class: "btn" %></p>
+<% end %>
+
+<%= will_paginate %>
+
+<ul class="customers">
+	<%= render @customers %>
+</ul>
+
+<%= will_paginate %>
