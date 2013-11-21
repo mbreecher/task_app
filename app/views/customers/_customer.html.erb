@@ -1,11 +1,11 @@
-<li>
-	<p>
-		<%= link_to customer.name, customer %>
-		<a>|</a>
-		<%= link_to "edit", edit_customer_path(customer) %>
-		<a>|</a>
-		<% if current_user.admin? %>
-			<%= link_to "delete", customer, method: :delete, data: {confirm: "You Sure"} %>
-		<% end %>
-	</p>
-</li>
+<tr>
+	<td><%= customer.name%></td>
+	<td><%= customer.start%></td>
+	<td><%= customer.fiscal_ye%></td>
+	<td><%= customer.next_per_end%></td>
+	<td><%= customer.next_target%></td>
+	<td><%= link_to "edit", edit_customer_path(customer) %></td>
+	<% if current_user.admin? %>
+		<td><%= link_to "delete", customer, method: :delete, data: {confirm: "You Sure"} %></td>
+	<% end %>
+</tr>

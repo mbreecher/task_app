@@ -1,5 +1,5 @@
-<% provide(:title, 'All customers') %>
-<div><h1>All customers</h1>
+<% provide(:title, 'my customers') %>
+<div><h1><%= current_user.name%>'s customers</h1>
 
 <% if current_user.admin? %>
 	<p><%= link_to "Create New Customer", new_customer_path, class: "btn" %></p>

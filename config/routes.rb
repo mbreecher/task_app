@@ -18,6 +18,8 @@ SampleApp::Application.routes.draw do
 
   match 'users/:id/toggle_admin', to: 'users#toggle_admin', via: 'get'
 
+  match '/accounts', to: 'customers#accounts', via: 'get'
+
   #get '/help',  to:'static_pages#help' 
   #get '/about', to:'static_pages#about'
   #get '/contact', to:'static_pages#contact'

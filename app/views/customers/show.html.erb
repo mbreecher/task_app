@@ -14,5 +14,7 @@
 	<li><b>Next Period End: </b><%= @customer.next_per_end %></li>
 	<li><b>Target Filing Date: </b><%= @customer.next_target %></li>
 	<li><b>CSM ID: </b><%= @customer.csm_id %></li>
-	<li><b>CSM: </b><%= User.find_by(id: @customer.csm_id).name %></li>
+	<% if @customer.csm_id != nil%>
+		<li><b>CSM: </b><%= User.find_by(id: @customer.csm_id).name %></li>
+	<% end %>
 </ul>

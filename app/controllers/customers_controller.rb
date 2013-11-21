@@ -5,6 +5,10 @@ class CustomersController < ApplicationController
 		@customers = Customer.paginate(page: params[:page])
 	end
 
+	def accounts
+		@customers = current_user.customers.paginate(page: params[:page])
+	end
+
 	def show
 		@customer = Customer.find(params[:id])
 	end
@@ -29,11 +33,21 @@ class CustomersController < ApplicationController
 	end
 
 	def destroy
-    #let(:tname) {User.find(params[:id]).name}
-    Customer.find(params[:id]).destroy
-    flash[:success] = "Customer deleted."
-    redirect_to customers_url
-  end
+		#let(:tname) {User.find(params[:id]).name}
+		Customer.find(params[:id]).destroy
+		flash[:success] = "Customer deleted."
+		redirect_to customers_url
+	end
+
+	def create
+	  	@customer = Customer.new(customer_params)
+	  	if @customer.save
+	  		flash[:success] = "Customer Created"
+	  		redirect_to customer_path(@customer)
+	  	else
+	  		render 'new'
+	  	end
+	end
 
 	private
 		def customer_params
