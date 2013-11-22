@@ -1,5 +1,8 @@
 <tr>
 	<td><%= link_to customer.name, customer %></td>
+	<td><% if customer.csm_id != nil%>
+		<%= User.find_by(id: customer.csm_id).name %>
+	<% end %></td>
 	<td><%= customer.start%></td>
 	<td><%= customer.fiscal_ye%></td>
 	<td><%= customer.next_per_end%></td>
