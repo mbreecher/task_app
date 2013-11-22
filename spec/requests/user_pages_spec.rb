@@ -83,9 +83,13 @@ describe "UserPages" do
   end
 
   describe "Signup" do
-    before{visit signup_path}
+    let(:submit) {"Create user account"}
+    let(:admin){FactoryGirl.create(:admin)}
 
-    let(:submit) {"Create my account"}
+    before do
+      sign_in admin
+      visit new_user_path
+    end
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -113,7 +117,7 @@ describe "UserPages" do
 
         it {should have_link('Sign out')}
         it {should have_title(user.name)}
-        it { should have_selector('div.alert.alert-success', text: 'Welcome')}
+        it { should have_selector('div.alert.alert-success', text: 'User Created')}
       end 
 
       it "should create a user" do

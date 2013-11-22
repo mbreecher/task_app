@@ -18,9 +18,5 @@ FactoryGirl.define do
 		fiscal_ye Date.new(2013,12,31)
 		next_per_end Date.new(2013, 12, 31)
 		next_target Date.new(2014, 2, 15)
-		
-		factory :account do
-			csm_id "1"
-		end
 	end
 end

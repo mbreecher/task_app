@@ -35,7 +35,7 @@ namespace :db do
 							fiscal_ye: "12/31/2013",
 							next_per_end: "12/31/2013",
 							next_target: "2/28/2014",
-							csm_id: "#{2 + n.modulo(3)}")
+							csm_id: "#{rand(10)}")
 		
 		end
 	end
