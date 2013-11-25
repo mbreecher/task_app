@@ -20,3 +20,10 @@ FactoryGirl.define do
 		next_target Date.new(2014, 2, 15)
 	end
 end
+
+FactoryGirl.define do
+	factory :task do
+		sequence(:name) {|n| "Task #{n}"}
+		due_date Date.new(2013,12,1)
+	end
+end

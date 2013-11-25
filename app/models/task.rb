@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
+	belongs_to :customer
 	validates :name, presence: true, length: {maximum: 50}
-	validates :reference, presence: true
-	validates :offset, presence: true
+	validates :customer_id, presence: true
+	validates :due_date, presence: true
 end

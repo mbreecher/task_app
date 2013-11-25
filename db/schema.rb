@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131122221508) do
+ActiveRecord::Schema.define(version: 20131124055156) do
 
   create_table "customers", force: true do |t|
     t.integer  "csm_id"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20131122221508) do
     t.string   "reference"
     t.integer  "offset"
     t.integer  "csm_id"
+    t.integer  "customer_id"
+    t.date     "due_date"
   end
 
   create_table "users", force: true do |t|

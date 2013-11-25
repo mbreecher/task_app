@@ -39,12 +39,12 @@ namespace :db do
 		
 		end
 
-		#10.times do |n|
-		#	Task.create!(	name: "Task #{n+1}"
-		#					instructions: "how to..."
-		#					reference: "filing date"
-		#					offset: "#{10-rand(20)}"
-		#					csm_id: "#{rand(10)+1}")
-		#end
+		10.times do |n|
+			Task.create!(	name: "Task #{n+1}",
+							instructions: "how to...",
+							due_date: "1/1/2014",
+							customer_id: "#{rand(10)+1}", 
+							csm_id: "#{rand(10)+1}")
+		end
 	end
 end

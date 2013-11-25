@@ -1,0 +1,16 @@
+<tr>
+	<td><%= link_to task.name, task %></td>
+	<td><% if task.csm_id != nil%>
+		<%= User.find_by(id: task.csm_id).name %>
+	<% end %></td>
+	<td><% if task.customer_id != nil%>
+		<%= Customer.find_by(id: task.customer_id).name %>
+	<% end %></td>
+	<td><%= task.name%></td>
+	<td><%= task.instructions %></td>
+	<td><%= task.due_date %></td>
+	<td><%= link_to "edit", edit_task_path(task) %></td>
+	<% if current_user.admin? %>
+		<td><%= link_to "delete", task, method: :delete, data: {confirm: "You Sure"} %></td>
+	<% end %>
+</tr>
