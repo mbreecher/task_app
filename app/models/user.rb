@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 	has_many :customers, foreign_key: "csm_id"
+	has_many :tasks, foreign_key: "csm_id"
 	before_save {self.email = email.downcase}
 	before_create :create_remember_token
 	#before_save {email.downcase!} #alternate method

@@ -1,0 +1,20 @@
+<% provide(:title, @task.name)%>
+<div class="row">
+	<aside class="span4">
+		<section>
+			<h1>
+				<%= @task.name %>
+			</h1>
+		</secion>
+	</aside>
+</div>
+<ul>
+	<li><b>Instructions: </b><%= @task.instructions %></li>
+	<% if @task.csm_id != nil%>
+		<li><b>CSM: </b><%= User.find_by(id: @task.csm_id).name %></li>
+	<% end %>
+	<% if @task.customer_id != nil%>
+		<li><b>Customer: </b><%= Customer.find_by(id: @task.customer_id).name %></li>
+	<% end %>
+	<li><b>Due Date: </b><%= @task.due_date %></li>
+</ul>

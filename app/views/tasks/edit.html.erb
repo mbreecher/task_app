@@ -1,10 +1,14 @@
-<% provide(:title, 'New Task')%>
-<h1>Create New Task</h1>
+<% provide(:title, "Edit task") %>
+<h1>Update <%= @task.name %> profile</h1>
 
 <div class="row">
 	<div class="span6 offset3">
 		<%= form_for(@task) do |f| %>
 			<%= render 'shared/task_errors' %>
+
+			<!-- add ability to edit database ID, needs update defined in controller
+			<%= f.label :id %>
+			<%= f.text_field :id %> -->
 
 			<%= f.label :name, "Task Name" %>
 			<%= f.text_field :name %>
@@ -21,7 +25,10 @@
 			<%= f.label :due_date, "Due Date" %>
 			<%= f.date_field :due_date %>
 
-			<%= f.submit "Create Task", class: "btn btn-large btn-primary" %>
+			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+		<%end %>
+		<% if @task.csm_id != nil%>
+			<b>CSM: </b><%= User.find_by(id: @task.csm_id).name %>
 		<% end %>
 	</div>
 </div>
