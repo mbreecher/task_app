@@ -15,7 +15,7 @@
 			<%= f.label :csm_id, "CSM ID" %>
 			<%= f.text_field :csm_id, value: current_user.id %>
 
-			<%= f.label :customer_id, "Customer ID" %>
+			<%= f.label :customer_id, "Customer" %>
 			<%= f.collection_select(:customer_id, current_user.customers.all, :id, :name) %>
 
 			<%= f.label :due_date, "Due Date" %>
