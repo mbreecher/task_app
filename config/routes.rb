@@ -18,8 +18,12 @@ SampleApp::Application.routes.draw do
   match '/signup', to: 'users#new', via: 'get'
 
   match 'users/:id/toggle_admin', to: 'users#toggle_admin', via: 'get'
+  match 'tasks/:id/done', to: 'tasks#completed', via: 'get' 
 
   match '/accounts', to: 'customers#accounts', via: 'get'
+
+  match '/my_tasks', to: 'tasks#my_tasks', via: 'get'
+  match '/workspace', to: 'tasks#workspace', via: 'get'
 
   #get '/help',  to:'static_pages#help' 
   #get '/about', to:'static_pages#about'

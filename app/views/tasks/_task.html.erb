@@ -8,6 +8,11 @@
 	<% end %></td>
 	<td><%= task.instructions %></td>
 	<td><%= task.due_date %></td>
+	<% if task.done == true %>
+		<td><%= link_to "yes", { controller: :tasks, action: :completed, id: task.id} %></td>
+	<% else %>
+		<td><%= link_to "no", { controller: :tasks, action: :completed, id: task.id} %></td>
+	<% end %>
 	<td><%= link_to "edit", edit_task_path(task) %></td>
 	<% if current_user.admin? %>
 		<td><%= link_to "delete", task, method: :delete, data: {confirm: "You Sure"} %></td>

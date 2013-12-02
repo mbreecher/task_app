@@ -1,5 +1,5 @@
 <% provide(:title, 'Tasks') %>
-<div><h1>All tasks</h1>
+<div><h1><%= current_user.name%>'s tasks</h1>
 
 <p><%= link_to "Create New Task", new_task_path, class: "btn" %></p>
 

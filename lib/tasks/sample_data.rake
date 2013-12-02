@@ -39,7 +39,7 @@ namespace :db do
 		
 		end
 
-		10.times do |n|
+		50.times do |n|
 			Task.create!(	name: "Task #{n+1}",
 							instructions: "how to...",
 							due_date: "1/1/2014",

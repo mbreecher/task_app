@@ -1,10 +1,31 @@
 class TasksController < ApplicationController
 
 	def index
-		@tasks = current_user.tasks.paginate(page: params[:page])
+		#@tasks = current_user.tasks.paginate(page: params[:page])
+		#@tasks = current_user.tasks.find_by(:done => false)
 
-		#@tasks = Task.paginate(page: params[:page])
+		@tasks = Task.paginate(page: params[:page])
 	end
+
+	def my_tasks
+		@tasks = current_user.tasks.paginate(page: params[:page])
+		#tasks.paginate(page: params[:page])
+	end
+
+	def workspace
+		@tasks = current_user.tasks.where(done: false).paginate(page: params[:page])
+		#@tasks = current_user.tasks.paginate(page: params[:page])
+	end
+
+	def completed
+	    @task = Task.find(params[:id])
+	    @task.toggle!(:done)
+	    @task.save
+	    #flash[:success] = "Task completed"
+    	#redirect_to(tasks_path)
+    	redirect_to :back
+	end
+
 	def show
 		if current_user?(User.find(params[:id])) || current_user.admin?
 			@task = Task.find(params[:id])
