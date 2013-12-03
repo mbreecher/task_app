@@ -25,7 +25,7 @@ class TasksController < ApplicationController
     	#redirect_to(tasks_path)
     	redirect_to :back
     rescue ApplicationController::RedirectBackError
-    	redirect_to tasks_path
+    	redirect_to(tasks_path)
 	end
 
 	def show
