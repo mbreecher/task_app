@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+helper_method :sort_column, :sort_direction
 
 	def index
 		#@tasks = current_user.tasks.paginate(page: params[:page])
@@ -8,12 +9,13 @@ class TasksController < ApplicationController
 	end
 
 	def my_tasks
-		@tasks = current_user.tasks.paginate(page: params[:page])
+		#@tasks = current_user.tasks.order(id: :desc).paginate(page: params[:page])
+		@tasks = current_user.tasks.order(sort_column + " " + sort_direction).paginate(page: params[:page])
 		#tasks.paginate(page: params[:page])
 	end
 
 	def workspace
-		@tasks = current_user.tasks.where(done: false).paginate(page: params[:page])
+		@tasks = current_user.tasks.where(done: false).order(due_date: :asc).paginate(page: params[:page])
 		#@tasks = current_user.tasks.paginate(page: params[:page])
 	end
 
@@ -49,7 +51,8 @@ class TasksController < ApplicationController
 		if @task.update_attributes(task_params)
 		  #handle a successful update
 		  flash[:success] = "Task updated"
-		  redirect_to @task
+		  #redirect_to @task
+		  redirect_to :back
 		else
 			render 'edit'
 		end
@@ -66,7 +69,8 @@ class TasksController < ApplicationController
 	  	@task = Task.new(task_params)
 	  	if @task.save
 	  		flash[:success] = "Task Created"
-	  		redirect_to task_path(@task)
+	  		#redirect_to task_path(@task)
+	  		redirect_to my_tasks_path
 	  	else
 	  		render 'new'
 	  	end
@@ -82,6 +86,12 @@ class TasksController < ApplicationController
 	        store_location
 	        redirect_to signin_url, notice: "Please sign in."
 	      end
+	    end
+	    def sort_column
+	    	Task.column_names.include?(params[:sort]) ? params[:sort] : "name"
+	    end
+	    def sort_direction
+	    	%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
 	    end
 
 end

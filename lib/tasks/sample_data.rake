@@ -42,9 +42,9 @@ namespace :db do
 		50.times do |n|
 			Task.create!(	name: "Task #{n+1}",
 							instructions: "how to...",
-							due_date: "1/1/2014",
+							due_date: Date.new(2013 + rand(1), rand(11)+1, rand(30)+1),
 							customer_id: "#{rand(10)+1}", 
-							csm_id: "#{rand(10)+1}")
+							csm_id: "#{rand(5)+1}")
 		end
 	end
 end
