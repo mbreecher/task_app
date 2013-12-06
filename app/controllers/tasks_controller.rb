@@ -15,7 +15,7 @@ helper_method :sort_column, :sort_direction
 	end
 
 	def workspace
-		@tasks = current_user.tasks.where(done: false).order(due_date: :asc).paginate(page: params[:page])
+		@tasks = current_user.tasks.where(done: false).order(sort_column + " " + sort_direction).paginate(page: params[:page])
 		#@tasks = current_user.tasks.paginate(page: params[:page])
 	end
 

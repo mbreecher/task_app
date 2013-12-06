@@ -7,11 +7,11 @@
 
 <table class="table table-hover table-bordered table-condensed">
 	<tr>
-		<th>Task</th>
-		<th>CSM</th>
-		<th>Customer</th>
+		<th><%= sortable "name", "Task" %></th>
+		<th><%=	sortable "csm_id", "CSM" %></th>
+		<th><%=	sortable "customer_id", "Customer" %></th>
 		<th>Instructions</th>
-		<th>Due date</th>
+		<th><%=	sortable "due_date", "Due Date" %></th>
 		<th>Done?</th>
 		<th></th>
 	</tr>
