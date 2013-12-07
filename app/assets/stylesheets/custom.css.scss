@@ -186,15 +186,17 @@ input {
 }
 
 /* arrows for sorting */
-th .current{
-  padding-right: 20px;
-  background-repeat: no-repeat;
-  background-position: right;
-}
-th .asc{
-  background-image: url(http://streamdir.com/images/asc.gif)
-}
-.desc{
-  background-image: url(http://streamdir.com/images/desc.gif)
+th {
+  .current{
+    padding-right: 20px;
+    background-repeat: no-repeat;
+    background-position: right;
+  }
+  .asc{
+    background-image: url(http://streamdir.com/images/asc.gif)
+  }
+  .desc{
+    background-image: url(http://streamdir.com/images/desc.gif)
+  }
 }
  

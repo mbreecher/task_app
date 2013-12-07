@@ -1,12 +1,13 @@
 class CustomersController < ApplicationController
-	before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
+helper_method :sort_column, :sort_direction
+before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
 
 	def index
-		@customers = Customer.paginate(page: params[:page])
+		@customers = Customer.order(sort_column + " " + sort_direction).paginate(page: params[:page])
 	end
 
 	def accounts
-		@customers = current_user.customers.paginate(page: params[:page])
+		@customers = current_user.customers.order(sort_column + " " + sort_direction).paginate(page: params[:page])
 	end
 
 	def show
@@ -60,5 +61,11 @@ class CustomersController < ApplicationController
 	        store_location
 	        redirect_to signin_url, notice: "Please sign in."
 	      end
+	    end
+	    def sort_column
+	    	Task.column_names.include?(params[:sort]) ? params[:sort] : "name"
+	    end
+	    def sort_direction
+	    	%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
 	    end
 end
