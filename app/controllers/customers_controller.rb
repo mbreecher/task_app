@@ -63,7 +63,7 @@ before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
 	      end
 	    end
 	    def sort_column
-	    	Task.column_names.include?(params[:sort]) ? params[:sort] : "name"
+	    	Customer.column_names.include?(params[:sort]) ? params[:sort] : "name"
 	    end
 	    def sort_direction
 	    	%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
