@@ -7,12 +7,12 @@
 
 <table class="table table-hover table-bordered table-condensed">
 	<tr>
-		<th><%= sortable "name", "Task" %></th>
+		<th><%= sortable "id", "Task" %></th>
 		<th><%=	sortable "csm_id", "CSM" %></th>
 		<th><%=	sortable "customer_id", "Customer" %></th>
 		<th>Instructions</th>
 		<th><%=	sortable "due_date", "Due Date" %></th>
-		<th>Done?</th>
+		<th><%= sortable "done", "Done?" %></th>
 		<th></th>
 	</tr>
 	<% if @tasks != nil%>

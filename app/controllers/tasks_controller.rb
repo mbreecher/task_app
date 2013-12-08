@@ -5,7 +5,7 @@ helper_method :sort_column, :sort_direction
 		#@tasks = current_user.tasks.paginate(page: params[:page])
 		#@tasks = current_user.tasks.find_by(:done => false)
 
-		@tasks = Task.paginate(page: params[:page])
+		@tasks = Task.order(sort_column + " " + sort_direction).paginate(page: params[:page])
 	end
 
 	def my_tasks
@@ -88,7 +88,7 @@ helper_method :sort_column, :sort_direction
 	      end
 	    end
 	    def sort_column
-	    	Task.column_names.include?(params[:sort]) ? params[:sort] : "name"
+	    	Task.column_names.include?(params[:sort]) ? params[:sort] : "id"
 	    end
 	    def sort_direction
 	    	%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
