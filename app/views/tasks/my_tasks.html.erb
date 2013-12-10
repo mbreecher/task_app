@@ -6,6 +6,7 @@
 <%= will_paginate %>
 
 <table class="table table-hover table-bordered table-condensed">
+	<% if @tasks != nil%>
 	<tr>
 		<th><%= sortable "id", "Task" %></th>
 		<th><%=	sortable "csm_id", "CSM" %></th>
@@ -16,8 +17,9 @@
 		<th><%= sortable "done", "Done?" %></th>
 		<th></th>
 	</tr>
-	<% if @tasks != nil%>
 		<%= render @tasks %>
+	<%else %>
+	<h2>No Tasks Found</h2>
 	<% end %>
 </table>
 

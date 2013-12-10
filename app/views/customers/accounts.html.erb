@@ -6,6 +6,7 @@
 <%= will_paginate %>
 
 <table class="table table-hover table-bordered table-condensed">
+	<%if @customers != nil%>
 	<tr>
 		<th><%= sortable "name", "Customer" %></th>
 		<th><%= sortable "csm_id", "CSM" %></th>
@@ -19,6 +20,7 @@
 		<th></th>
 	</tr>
 	<%= render @customers %>
+	<% end %>
 </table>
 
 <%= will_paginate %>
