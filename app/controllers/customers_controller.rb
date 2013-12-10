@@ -53,7 +53,7 @@ before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
 
 	private
 		def customer_params
-	  		params.require(:customer).permit(:name, :start, :fiscal_ye, :next_per_end, :next_target, :csm_id)
+	  		params.require(:customer).permit(:name, :start, :fiscal_ye, :next_per_end, :next_target, :csm_id, :single_source, :note, :xbrl_service)
 	  	end
 
 		def signed_in_user
