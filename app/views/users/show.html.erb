@@ -6,10 +6,16 @@
 				<%= gravatar_for @user, size: 50 %>
 				<%= @user.name %>
 				<% if @user.admin? %>
-					<div>admin user</div>
+					<div>Admin</div>
+				<% end %>
+				<% if @user.is_senior? %>
+					<div>Senior</div>
 				<% end %>
 			</h1>
 		</section>
 	</aside>
 </div>
-<%= @user.name %>, <%= @user.email %>, csm_id: <%= @user.id %>
+<%= @user.name %>, <%= @user.email %>, csm_id: <%= @user.id %>, senior_id: <%= @user.senior %>
+<% if @user.senior != nil && @user.senior > 0 %>
+	<div><b>Senior CSM: </b><%= User.find_by(id: @user.senior).name %></div>
+<% end %>

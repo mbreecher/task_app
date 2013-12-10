@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131201041829) do
+ActiveRecord::Schema.define(version: 20131210172029) do
 
   create_table "customers", force: true do |t|
     t.integer  "csm_id"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(version: 20131201041829) do
     t.date     "next_target"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "single_source"
+    t.string   "note"
+    t.string   "xbrl_service"
   end
 
   create_table "tasks", force: true do |t|
@@ -35,6 +38,7 @@ ActiveRecord::Schema.define(version: 20131201041829) do
     t.integer  "customer_id"
     t.date     "due_date"
     t.boolean  "done",         default: false
+    t.string   "note"
   end
 
   create_table "users", force: true do |t|
@@ -45,6 +49,8 @@ ActiveRecord::Schema.define(version: 20131201041829) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",           default: false
+    t.boolean  "is_senior",       default: false
+    t.integer  "senior"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

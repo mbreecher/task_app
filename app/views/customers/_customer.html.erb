@@ -7,6 +7,13 @@
 	<td><%= customer.fiscal_ye%></td>
 	<td><%= customer.next_per_end%></td>
 	<td><%= customer.next_target%></td>
+	<% if customer.single_source == true %>
+		<td>yes</td>
+	<%else%>
+		<td></td>
+	<%end%>
+	<td><%= customer.note %></td>
+	<td><%= customer.xbrl_service %></td>
 	<td><%= link_to "edit", edit_customer_path(customer) %></td>
 	<% if current_user.admin? %>
 		<td><%= link_to "delete", customer, method: :delete, data: {confirm: "You Sure"} %></td>

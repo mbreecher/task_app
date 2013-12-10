@@ -8,6 +8,7 @@
 	<% end %></td>
 	<td><%= task.instructions %></td>
 	<td><%= task.due_date %></td>
+	<td><%= task.note %></td>
 	<% if task.done == true %>
 		<td><%= link_to "yes", { controller: :tasks, action: :completed, id: task.id} %></td>
 	<% else %>

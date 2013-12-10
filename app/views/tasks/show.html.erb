@@ -17,5 +17,6 @@
 		<li><b>Customer: </b><%= Customer.find_by(id: @task.customer_id).name %></li>
 	<% end %>
 	<li><b>Due Date: </b><%= @task.due_date %></li>
+	<li><b>Notes: </b><%= @task.note %></li>
 	<li><b>Done? </b><%= @task.done	%></li>
 </ul>

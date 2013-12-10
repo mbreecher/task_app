@@ -14,5 +14,9 @@
 		<% if user.admin? %>
 			admin
 		<% end %>
+		<% if user.is_senior? %>
+			senior
+		<% end %>
 		<a><%= link_to 'toggle admin', { controller: :users, action: :toggle_admin, id: user.id} %></a>
+		<a><%= link_to 'toggle senior', { controller: :users, action: :toggle_senior, id: user.id} %></a>
 </li>

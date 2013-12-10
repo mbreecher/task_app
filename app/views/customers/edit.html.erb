@@ -28,6 +28,17 @@
 			<%= f.label :csm_id, "CSM ID" %>
 			<%= f.text_field :csm_id %>
 
+			<div class="checkbox-inline">
+				<%= f.label :single_source, "Single Source?" %>
+				<%= f.check_box :single_source %>
+			</div>
+
+			<%= f.label :note, "Notes" %>
+			<%= f.text_field :note %>
+
+			<%= f.label :xbrl_service, "XBRL status" %>
+			<%= f.text_field :xbrl_service %>
+
 			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
 		<%end %>
 		<% if @customer.csm_id != nil%>

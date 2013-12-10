@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: [:index, :toggle_admin, :destroy]
+  before_action :admin_user, only: [:index, :toggle_admin, :toggle_senior, :destroy]
   
   def index
     @users = User.paginate(page: params[:page])
@@ -16,6 +16,19 @@ class UsersController < ApplicationController
       redirect_to(users_path)
     else
       flash[:success] = "You cannot revoke your own admin status"
+      redirect_to(users_path)
+    end
+  end
+
+  def toggle_senior
+    @user = User.find(params[:id])
+    if !current_user?(@user)
+      @user.toggle!(:is_senior)
+      @user.save
+      flash[:success] = "Senior status changed"
+      redirect_to(users_path)
+    else
+      flash[:success] = "You cannot revoke your own senior status"
       redirect_to(users_path)
     end
   end
@@ -67,7 +80,7 @@ class UsersController < ApplicationController
   private
 
   	def user_params
-  		params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  		params.require(:user).permit(:name, :email, :password, :password_confirmation, :senior)
   	end
 
     #before filters

@@ -22,6 +22,9 @@
 			<%= f.label :password_confirmation, "Confirm Password" %>
 			<%= f.text_field :password_confirmation %>
 
+			<%= f.label :senior, "Senior CSM ID" %>
+			<%= f.text_field :senior %>
+
 			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
 		<%end %>
 		<%= gravatar_for @user %>

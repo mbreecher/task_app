@@ -18,6 +18,7 @@ SampleApp::Application.routes.draw do
   match '/signup', to: 'users#new', via: 'get'
 
   match 'users/:id/toggle_admin', to: 'users#toggle_admin', via: 'get'
+  match 'users/:id/toggle_senior', to: 'users#toggle_senior', via: 'get'
   match 'tasks/:id/done', to: 'tasks#completed', via: 'get' 
 
   match '/accounts', to: 'customers#accounts', via: 'get'

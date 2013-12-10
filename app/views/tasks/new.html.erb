@@ -21,6 +21,9 @@
 			<%= f.label :due_date, "Due Date" %>
 			<%= f.date_field :due_date %>
 
+			<%= f.label :note, "Notes" %>
+			<%= f.text_field :note %>
+
 			<%= f.submit "Create Task", class: "btn btn-large btn-primary" %>
 		<% end %>
 	</div>
