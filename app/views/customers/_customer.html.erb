@@ -12,7 +12,9 @@
 	<%else%>
 		<td></td>
 	<%end%>
-	<td><%= customer.note %></td>
+	<% if customer.note != nil %>
+		<td><%= customer.note.first(10) %> <%if customer.note.at(11) != nil%> ...<%end%></td>
+	<% else %> <td></td><% end %>
 	<td><%= customer.xbrl_service %></td>
 	<td><%= link_to "edit", edit_customer_path(customer) %></td>
 	<% if current_user.admin? %>
