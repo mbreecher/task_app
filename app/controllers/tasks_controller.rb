@@ -5,19 +5,19 @@ helper_method :sort_column, :sort_direction
 		#@tasks = current_user.tasks.paginate(page: params[:page])
 		#@tasks = current_user.tasks.find_by(:done => false)
 
-		@tasks = Task.order(sort_column + " " + sort_direction).paginate(page: params[:page])
+		#@tasks = Task.search(params[:search])
+		@tasks = Task.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page])
 	end
 
 	def my_tasks
 		#@tasks = current_user.tasks.order(id: :desc).paginate(page: params[:page])
-		@tasks = current_user.tasks.order(sort_column + " " + sort_direction).paginate(page: params[:page])
+		@tasks = current_user.tasks.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page])
 		#tasks.paginate(page: params[:page])
 	end
 
 	def workspace
 		#@tasks = current_user.tasks.where("due_date >= ? AND due_date <= ?", Time.now - 30.days, Time.now + 7.days).order(sort_column + " " + sort_direction).paginate(page: params[:page])
 		@tasks = current_user.tasks.where("done = ? AND due_date <= ?", false,  Time.now + 7.days).order(sort_column + " " + sort_direction).paginate(page: params[:page])
-		#@tasks = current_user.tasks.where("done == ?", false).paginate(page: params[:page])
 	end
 
 	def completed

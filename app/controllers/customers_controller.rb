@@ -7,6 +7,7 @@ before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
 	end
 
 	def accounts
+		#@customers = current_user.customers.joins(:user, :customer).order(sort_column + " " + sort_direction).paginate(page: params[:page])
 		@customers = current_user.customers.order(sort_column + " " + sort_direction).paginate(page: params[:page])
 	end
 

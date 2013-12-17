@@ -1,10 +1,10 @@
 <tr>
 	<td><%= link_to task.name, task %></td>
 	<td><% if task.csm_id != nil%>
-		<%= User.find_by(id: task.csm_id).name %>
+		<%= task.user.name %>
 	<% end %></td>
 	<td><% if task.customer_id != nil%>
-		<%= Customer.find_by(id: task.customer_id).name %>
+		<%= task.customer.name %>
 	<% end %></td>
 	<td><%= task.instructions %></td>
 	<td><%= task.due_date %></td>

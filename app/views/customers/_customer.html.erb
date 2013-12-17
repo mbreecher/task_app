@@ -1,7 +1,7 @@
 <tr>
 	<td><%= link_to customer.name, customer %></td>
 	<td><% if customer.csm_id != nil%>
-		<%= User.find_by(id: customer.csm_id).name %>
+		<%= customer.user.name %>
 	<% end %></td>
 	<td><%if customer.start != nil %><%= customer.start.strftime("%b %Y") %><%end%></td>
 	<td><%if customer.fiscal_ye != nil %><%= customer.fiscal_ye.strftime("%b %d") %><%end%></td>

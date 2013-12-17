@@ -1,7 +1,11 @@
 <% provide(:title, 'Tasks') %>
-<div><h1><%= current_user.name%>'s tasks</h1>
+<h1><%= current_user.name%>'s tasks</h1>
 
-<p><%= link_to "Create New Task", new_task_path, class: "btn" %></p>
+<%= link_to "Create New Task", new_task_path, class: "btn" %>
+
+<%= form_tag my_tasks_path, method: 'get' do %>
+	<%= render partial: 'search' %>
+<% end %>
 
 <%= will_paginate %>
 
