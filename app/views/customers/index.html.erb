@@ -3,6 +3,10 @@
 
 <p><%= link_to "Create New Customer", new_customer_path, class: "btn" %></p>
 
+<%= form_tag accounts_path, method: 'get' do %>
+	<%= render partial: 'shared/search' %>
+<% end %>
+
 <%= will_paginate %>
 
 <table class="table table-hover table-bordered table-condensed">

@@ -3,8 +3,8 @@
 
 <p><%= link_to "Create New Task", new_task_path, class: "btn" %></p>
 
-<%= form_tag tasks_path, method: 'get', id: "tasks_search" do %>
-	<%= render partial: 'search' %>
+<%= form_tag tasks_path, method: 'get' do %>
+	<%= render partial: 'shared/search' %>
 <% end %>
 
 <%= will_paginate %>

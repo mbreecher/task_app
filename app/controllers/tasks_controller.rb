@@ -89,7 +89,7 @@ helper_method :sort_column, :sort_direction
 	      end
 	    end
 	    def sort_column
-	    	Task.column_names.include?(params[:sort]) ? params[:sort] : "id"
+	    	Task.column_names.include?(params[:sort]) ? params[:sort] : "due_date"
 	    end
 	    def sort_direction
 	    	%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"

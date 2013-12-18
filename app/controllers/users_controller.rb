@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :admin_user, only: [:index, :toggle_admin, :toggle_senior, :destroy]
   
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.search(params[:search]).paginate(page: params[:page])
   end
 
   def toggle_admin

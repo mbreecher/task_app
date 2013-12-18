@@ -3,12 +3,12 @@ helper_method :sort_column, :sort_direction
 before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
 
 	def index
-		@customers = Customer.order(sort_column + " " + sort_direction).paginate(page: params[:page])
+		@customers = Customer.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page])
 	end
 
 	def accounts
 		#@customers = current_user.customers.joins(:user, :customer).order(sort_column + " " + sort_direction).paginate(page: params[:page])
-		@customers = current_user.customers.order(sort_column + " " + sort_direction).paginate(page: params[:page])
+		@customers = current_user.customers.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page])
 	end
 
 	def show
@@ -64,7 +64,7 @@ before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
 	      end
 	    end
 	    def sort_column
-	    	Customer.column_names.include?(params[:sort]) ? params[:sort] : "id"
+	    	Customer.column_names.include?(params[:sort]) ? params[:sort] : "name"
 	    end
 	    def sort_direction
 	    	%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
