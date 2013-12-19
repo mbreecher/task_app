@@ -1,4 +1,16 @@
-<tr>
+<% if task.due_date != nil %>
+	<% if task.due_date < Time.now %>
+		<tr class="alert-danger">
+	<% elsif task.due_date < Time.now+3.days && task.due_date >= Time.now %>
+		<tr class="warning">
+	<% elsif task.due_date < Time.now+7.days && task.due_date >= Time.now+3.days %>
+		<tr class="success">
+	<% else %>
+		<tr>
+	<% end %>
+<% else %>
+	<tr>
+<% end %>
 	<td><%= link_to task.name, task %></td>
 	<td><% if task.csm_id != nil%>
 		<%= task.user.name %>

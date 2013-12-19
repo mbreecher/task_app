@@ -6,7 +6,13 @@
 	<td><%if customer.start != nil %><%= customer.start.strftime("%b %Y") %><%end%></td>
 	<td><%if customer.fiscal_ye != nil %><%= customer.fiscal_ye.strftime("%b %d") %><%end%></td>
 	<td><%if customer.next_per_end != nil %><%= customer.next_per_end.strftime("%b %d")%><% end %></td>
-	<td><%if customer.next_target != nil %><%= customer.next_target.strftime("%b %d")%><% end %></td>
+	<%if customer.next_target != nil %>
+		<% if customer.next_target != nil && customer.next_target < Time.now %>
+			<td class="alert-danger"><%= customer.next_target.strftime("%b %d")%></td>
+		<% elsif %>
+			<td><%= customer.next_target.strftime("%b %d")%></td>
+		<% end %>
+	<% end %>
 	<% if customer.single_source == true %>
 		<td>yes</td>
 	<%else%>
