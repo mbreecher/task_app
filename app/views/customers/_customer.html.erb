@@ -9,9 +9,11 @@
 	<%if customer.next_target != nil %>
 		<% if customer.next_target != nil && customer.next_target < Time.now %>
 			<td class="alert-danger"><%= customer.next_target.strftime("%b %d")%></td>
-		<% elsif %>
+		<% else %>
 			<td><%= customer.next_target.strftime("%b %d")%></td>
 		<% end %>
+	<% else %>
+		<td><%= customer.next_target.strftime("%b %d")%></td>
 	<% end %>
 	<% if customer.single_source == true %>
 		<td>yes</td>
