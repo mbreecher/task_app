@@ -13,7 +13,7 @@
 			<td><%= customer.next_target.strftime("%b %d")%></td>
 		<% end %>
 	<% else %>
-		<td></td>
+		<td class="alert-danger"></td>
 	<% end %>
 	<% if customer.single_source == true %>
 		<td>yes</td>
