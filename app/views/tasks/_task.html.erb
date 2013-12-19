@@ -1,16 +1,4 @@
-<% if task.due_date != nil %>
-	<% if task.due_date < Time.now %>
-		<tr class="alert-danger">
-	<% elsif task.due_date < Time.now+3.days && task.due_date >= Time.now %>
-		<tr class="warning">
-	<% elsif task.due_date < Time.now+7.days && task.due_date >= Time.now+3.days %>
-		<tr class="success">
-	<% else %>
-		<tr>
-	<% end %>
-<% else %>
-	<tr>
-<% end %>
+<tr>
 	<td><%= link_to task.name, task %></td>
 	<td><% if task.csm_id != nil%>
 		<%= task.user.name %>
@@ -19,6 +7,19 @@
 		<%= task.customer.name %>
 	<% end %></td>
 	<td><%= task.instructions %></td>
+<% if task.due_date != nil %>
+	<% if task.due_date < Time.now-2.days %>
+		<td class="label label-important"><%= task.due_date %></td>
+	<% elsif task.due_date < Time.now+3.days && task.due_date >= Time.now-2.days %>
+		<td class="label label-warning"><%= task.due_date %></td>
+	<% elsif task.due_date < Time.now+7.days && task.due_date >= Time.now+3.days %>
+		<td class="label label-info"><%= task.due_date %></td>
+	<% else %>
+		<td class="label label-default"><%= task.due_date %></td>
+	<% end %>
+<% else %>
+	<td><%= task.due_date %></td>
+<% end %>
 	<td><%= task.due_date %></td>
 	<% if task.note != nil %>
 		<td><%= task.note.first(10) %> <%if task.note.at(11) != nil%> ...<%end%></td>
