@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 			format: {with: VALID_EMAIL_REGEX},
 			uniqueness: {case_sensitive: false}
 	has_secure_password
-	validates :password, length: {minimum: 6}
+	validates :password, format: {with: /\A(?=.*[a-zA-Z])(?=.*[0-9]).{8,}\z/, message: "must be at least 8 characters and include one number and letter"}
 
 	def User.new_remember_token
 		SecureRandom.urlsafe_base64
