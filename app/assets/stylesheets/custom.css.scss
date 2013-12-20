@@ -199,3 +199,9 @@ th {
     background-image: url(http://streamdir.com/images/desc.gif)
   }
 }
+
+/* table hover correction */
+.table tr:hover td,
+.table tr:hover td{
+  background-color: inherit;
+} 
