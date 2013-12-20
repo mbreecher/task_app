@@ -28,7 +28,7 @@ helper_method :sort_column, :sort_direction
     	#redirect_to(tasks_path)
     	redirect_to :back
     rescue ApplicationController::RedirectBackError
-    	redirect_to(tasks_path)
+    	redirect_to(my_tasks_path)
 	end
 
 	def show
@@ -53,7 +53,7 @@ helper_method :sort_column, :sort_direction
 		  #handle a successful update
 		  flash[:success] = "Task updated"
 		  #redirect_to @task
-		  redirect_to :back
+		  redirect_to workspace_path
 		else
 			render 'edit'
 		end
@@ -62,8 +62,8 @@ helper_method :sort_column, :sort_direction
 	def destroy
 		#let(:tname) {User.find(params[:id]).name}
 		Task.find(params[:id]).destroy
-		flash[:success] = "Customer deleted."
-		redirect_to tasks_url
+		flash[:success] = "Task deleted."
+		redirect_to workspace_path
 	end
 
 	def create
@@ -71,7 +71,7 @@ helper_method :sort_column, :sort_direction
 	  	if @task.save
 	  		flash[:success] = "Task Created"
 	  		#redirect_to task_path(@task)
-	  		redirect_to my_tasks_path
+	  		redirect_to workspace_path
 	  	else
 	  		render 'new'
 	  	end
