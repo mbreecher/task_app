@@ -23,3 +23,5 @@
 
 # Ignore admin population rake file
 /db/lib/tasks/sample_data.rake
+
+#ignore files with mail auth info
