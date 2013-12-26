@@ -23,7 +23,7 @@
 			<%= f.password_field :password_confirmation %>
 
 			<%= f.label :senior, "Senior CSM ID" %>
-			<%= f.text_field :senior %>
+			<%= f.collection_select(:senior,  @seniors, :id, :name, {include_blank: "Select Senior"}) %>
 
 			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
 		<%end %>

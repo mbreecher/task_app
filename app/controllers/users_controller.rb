@@ -22,15 +22,10 @@ class UsersController < ApplicationController
 
   def toggle_senior
     @user = User.find(params[:id])
-    if !current_user?(@user)
       @user.toggle!(:is_senior)
       @user.save
       flash[:success] = "Senior status changed"
       redirect_to(users_path)
-    else
-      flash[:success] = "You cannot revoke your own senior status"
-      redirect_to(users_path)
-    end
   end
 
   def show
@@ -43,10 +38,12 @@ class UsersController < ApplicationController
   
   def new
   	@user = User.new
+    @seniors = User.where("is_senior = ?",true)
   end
 
   def edit
     #remove with addition of before_action filter @user = User.find(params[:id])
+    @seniors = User.where("is_senior = ?",true)
   end
 
   def update
