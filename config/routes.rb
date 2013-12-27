@@ -26,6 +26,10 @@ SampleApp::Application.routes.draw do
   match '/my_tasks', to: 'tasks#my_tasks', via: 'get'
   match '/workspace', to: 'tasks#workspace', via: 'get'
 
+  match '/team_customers', to: 'customers#team_customers', via: 'get'
+  match '/team_users', to: 'users#team_users', via: 'get'
+  match '/team_tasks', to: 'tasks#team_tasks', via: 'get'
+
   #get '/help',  to:'static_pages#help' 
   #get '/about', to:'static_pages#about'
   #get '/contact', to:'static_pages#contact'

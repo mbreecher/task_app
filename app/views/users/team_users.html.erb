@@ -1,0 +1,18 @@
+<% provide(:title, 'All users') %>
+<h1>Team users</h1>
+
+<% if current_user.admin? %>
+	<p><%= link_to "Create New User", new_user_path, class: "btn" %></p>
+<% end %>
+
+<%= form_tag users_path, method: 'get' do %>
+	<%= render partial: 'shared/search' %>
+<% end %>
+
+<%= will_paginate %>
+
+<ul class="users">
+	<%= render @users %>
+</ul>
+
+<%= will_paginate %>

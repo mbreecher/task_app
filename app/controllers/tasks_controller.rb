@@ -20,6 +20,10 @@ helper_method :sort_column, :sort_direction
 		@tasks = current_user.tasks.where("done = ? AND due_date <= ?", false,  Time.now + 7.days).order(sort_column + " " + sort_direction).paginate(page: params[:page])
 	end
 
+	def team_tasks
+		@tasks = Task.joins(:user).where("senior = ?", current_user.id).search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page])
+	end
+
 	def completed
 	    @task = Task.find(params[:id])
 	    @task.toggle!(:done)

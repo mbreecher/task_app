@@ -11,6 +11,10 @@ before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
 		@customers = current_user.customers.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page])
 	end
 
+	def team_customers
+		@customers = Customer.joins(:user).where("senior = ?", current_user.id).search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page])
+	end
+
 	def show
 		@customer = Customer.find(params[:id])
 	end

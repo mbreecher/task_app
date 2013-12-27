@@ -11,6 +11,9 @@ module SessionsHelper
 	def is_admin?
 		current_user.admin?
 	end
+	def is_senior?
+		current_user.is_senior?
+	end
 	def current_user=(user)
 		@current_user = user
 	end

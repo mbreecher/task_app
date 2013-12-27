@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @users = User.search(params[:search]).order('id asc').paginate(page: params[:page])
   end
 
+  def team_users
+    @users = User.where("senior = ?", current_user.id).search(params[:search]).order('id asc').paginate(page: params[:page])
+  end
+
   def toggle_admin
     @user = User.find(params[:id])
     if !current_user?(@user)

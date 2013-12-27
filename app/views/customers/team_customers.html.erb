@@ -1,0 +1,28 @@
+<% provide(:title, 'All customers') %>
+<div><h1>Team customers</h1>
+
+<p><%= link_to "Create New Customer", new_customer_path, class: "btn" %></p>
+
+<%= form_tag accounts_path, method: 'get' do %>
+	<%= render partial: 'shared/search' %>
+<% end %>
+
+<%= will_paginate %>
+
+<table class="table table-hover table-bordered table-condensed">
+	<tr>
+		<th><%= sortable "name", "Customer" %></th>
+		<th><%= sortable "csm_id", "CSM" %></th>
+		<th><%= sortable "start", "start date" %></th>
+		<th><%= sortable "fiscal_ye", "year end" %></th>
+		<th><%= sortable "next_per_end", "next period end" %></th>
+		<th><%= sortable "next_target", "next target" %></th>
+		<th><%= sortable "single_source", "s/s" %></th>
+		<th>Notes</th>
+		<th>XBRL</th>
+		<th></th>
+	</tr>
+	<%= render @customers %>
+</table>
+
+<%= will_paginate %>

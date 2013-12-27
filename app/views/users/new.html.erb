@@ -18,7 +18,7 @@
 			<%= f.label :password_confirmation, "Confirmation" %>
 			<%= f.password_field :password_confirmation %>
 
-			<%= f.label :senior, "Senior CSM ID" %>
+			<%= f.label :senior, "Senior CSM" %>
 			<%= f.collection_select(:senior,  @seniors, :id, :name, {include_blank: "Select Senior"}) %>
 
 			<%= f.submit "Create user account", class: "btn btn-large btn-primary" %>

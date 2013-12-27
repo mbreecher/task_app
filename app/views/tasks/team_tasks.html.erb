@@ -1,0 +1,28 @@
+<% provide(:title, 'Tasks') %>
+<h1>Team tasks</h1>
+
+<p><%= link_to "Create New Task", new_task_path, class: "btn" %></p>
+
+<%= form_tag tasks_path, method: 'get' do %>
+	<%= render partial: 'shared/search' %>
+<% end %>
+
+<%= will_paginate %>
+
+<table class="table table-hover table-bordered table-condensed">
+	<tr>
+		<th><%= sortable "id", "Task" %></th>
+		<th><%=	sortable "csm_id", "CSM" %></th>
+		<th><%=	sortable "customer_id", "Customer" %></th>
+		<th>Instructions</th>
+		<th><%=	sortable "due_date", "Due Date" %></th>
+		<th>Notes</th>
+		<th><%= sortable "done", "Done?" %></th>
+		<th></th>
+	</tr>
+	<% if @tasks != nil%>
+		<%= render @tasks %>
+	<% end %>
+</table>
+
+<%= will_paginate %>
