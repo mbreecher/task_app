@@ -21,8 +21,13 @@
 			<%= f.label :next_target, "Next Target Filing Date" %>
 			<%= f.date_field :next_target %>
 
-			<%= f.label :csm_id, "CSM ID" %>
-			<%= f.text_field :csm_id, value: current_user.id %>
+			<% if current_user.is_senior %>
+				<%= f.label :csm_id, "CSM" %>
+				<%= f.collection_select(:csm_id, User.where(senior: current_user.id), :id, :name, {selected: current_user.id}) %>
+			<% else %>
+				<%= f.label :csm_id, "CSM" %>
+				<%= f.collection_select(:csm_id, User.where(id: current_user.id), :id, :name) %>
+			<% end %>
 
 			<div class="checkbox-inline">
 				<%= f.label :single_source, "Single Source?" %>
