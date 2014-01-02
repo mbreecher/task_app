@@ -1,6 +1,8 @@
 <% provide(:title, 'Workspace') %>
-<div><h1><%= current_user.name%>'s current tasks</h1>
 
+<div><h1><%= current_user.name%>'s current tasks</h1></div>
+
+<%=	render partial: "colors" %>
 <p><%= link_to "Create New Task", new_task_path, class: "btn" %></p>
 
 <%= will_paginate %>

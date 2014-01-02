@@ -1,6 +1,7 @@
 <% provide(:title, 'Tasks') %>
 <h1>Team tasks</h1>
 
+<%=	render partial: "colors" %>
 <p><%= link_to "Create New Task", new_task_path, class: "btn" %></p>
 
 <%= form_tag tasks_path, method: 'get' do %>
