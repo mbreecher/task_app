@@ -30,7 +30,8 @@ helper_method :sort_column, :sort_direction
 	    @task.save
 	    #flash[:success] = "Task completed"
     	#redirect_to(tasks_path)
-    	redirect_to :back
+    	#redirect_to :back
+    	redirect_to workspace_path
     rescue ApplicationController::RedirectBackError
     	redirect_to(my_tasks_path)
 	end
