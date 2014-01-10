@@ -32,7 +32,8 @@ before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
 		if @customer.update_attributes(customer_params)
 		  #handle a successful update
 		  flash[:success] = "Customer updated"
-		  redirect_to @customer
+		  #redirect_to @customer
+		  redirect_to accounts_path
 		else
 			render 'edit'
 		end
