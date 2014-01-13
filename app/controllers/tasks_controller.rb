@@ -24,16 +24,14 @@ helper_method :sort_column, :sort_direction
 		@tasks = Task.joins(:user).where("senior = ?", current_user.id).search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page])
 	end
 
-	def completed
+	def toggle_done
 	    @task = Task.find(params[:id])
-	    @task.toggle(:done)
+	    @task.toggle!(:done)
 	    @task.save
 	    #flash[:success] = "Task completed"
     	#redirect_to(tasks_path)
     	#redirect_to :back
-    	redirect_to workspace_path
-    rescue ApplicationController::RedirectBackError
-    	redirect_to(my_tasks_path)
+    	redirect_to (workspace_path)
 	end
 
 	def show
