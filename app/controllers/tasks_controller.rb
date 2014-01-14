@@ -26,11 +26,23 @@ helper_method :sort_column, :sort_direction, :toggles!
 
 	def toggle_done
 	    @task = Task.find(params[:id])
-	    @task.toggle!(:done)
+	    @task.toggles!(:done)
 	    @task.save!
 	    #flash[:success] = "Task completed"
     	#redirect_to(tasks_path)
     	#redirect_to :back
+    	redirect_to (workspace_path)
+	end
+	def toggle_complete
+	    @task = Task.find(params[:id])
+	    @task.update_attribute(:done, true)
+	    @task.save!
+    	redirect_to (workspace_path)
+	end
+	def toggle_do
+	    @task = Task.find(params[:id])
+	    @task.update_attribute(:done, false)
+	    @task.save!
     	redirect_to (workspace_path)
 	end
 

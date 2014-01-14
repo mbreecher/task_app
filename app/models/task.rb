@@ -12,7 +12,4 @@ class Task < ActiveRecord::Base
 			scoped
 		end
 	end
-	def toggles!(attribute)
-		toggle(attribute).update_attributes({attribute => self[attribute]})
-	end
 end
