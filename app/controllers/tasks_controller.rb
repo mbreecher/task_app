@@ -26,10 +26,8 @@ helper_method :sort_column, :sort_direction, :toggles!
 
 	def toggle_done
 	    @task = Task.find(params[:id])
-	    if @task.toggles!(:done)
-	    	@task.save!
-	    	flash[:success] = "Status Changed"
-	    end
+	    @task.toggle!(:done)
+	    @task.save!
 	    #flash[:success] = "Task completed"
     	#redirect_to(tasks_path)
     	#redirect_to :back
