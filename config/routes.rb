@@ -19,10 +19,9 @@ SampleApp::Application.routes.draw do
 
   match 'users/:id/toggle_admin', to: 'users#toggle_admin', via: 'get'
   match 'users/:id/toggle_senior', to: 'users#toggle_senior', via: 'get'
-  match 'tasks/:id/toggle_done', to: 'tasks#toggle_done', via: 'get'
-  
-  match 'tasks/:id/toggle_complete', to: 'tasks#toggle_complete', via: 'get'
-  match 'tasks/:id/toggle_do', to: 'tasks#toggle_do', via: 'get' 
+
+  match 'tasks/:id/complete', to: 'tasks#toggle_complete', via: 'get'
+  match 'tasks/:id/do', to: 'tasks#toggle_do', via: 'get' 
 
   match '/accounts', to: 'customers#accounts', via: 'get'
 
