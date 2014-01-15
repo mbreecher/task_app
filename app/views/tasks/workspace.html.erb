@@ -6,6 +6,7 @@
 <p><%= link_to "Create New Task", new_task_path, class: "btn" %></p>
 <p>Current Time: <%= Time.now %></p>
 <p>Beginning of Day Time: <%= Time.now.beginning_of_day %></p>
+<p>Local Time: <%= Time.now.localtime %></p>
 
 <%= will_paginate %>
 
