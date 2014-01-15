@@ -27,10 +27,10 @@
 
 			<% if current_user.is_senior %>
 				<%= f.label :csm_id, "CSM" %>
-				<%= f.collection_select(:csm_id, User.where(senior: current_user.id), :id, :name) %>
+				<%= f.collection_select(:csm_id, User.where(senior: current_user.id).order('name ASC'), :id, :name) %>
 			<% else %>
 				<%= f.label :csm_id, "CSM" %>
-				<%= f.collection_select(:csm_id, User.where(id: current_user.id), :id, :name) %>
+				<%= f.collection_select(:csm_id, User.where(id: current_user.id).order('name ASC'), :id, :name) %>
 			<% end %>
 
 			<div class="checkbox-inline">
