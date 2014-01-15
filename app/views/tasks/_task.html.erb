@@ -8,9 +8,9 @@
 	<% end %></td>
 	<td><%= task.instructions %></td>
 	<% if task.due_date != nil %>
-		<% if task.due_date.beginning_of_day < Time.now.beginning_of_day-1.day %>
+		<% if task.due_date.beginning_of_day < Time.now.beginning_of_day %>
 			<td class="label label-important"><%= task.due_date %></td>
-		<% elsif task.due_date.beginning_of_day < Time.now.beginning_of_day+3.days && task.due_date.beginning_of_day >= Time.now.beginning_of_day-1.day %>
+		<% elsif task.due_date.beginning_of_day < Time.now.beginning_of_day+3.days && task.due_date.beginning_of_day >= Time.now.beginning_of_day %>
 			<td class="label label-warning"><%= task.due_date %></td>
 		<% elsif task.due_date.beginning_of_day < Time.now.beginning_of_day+7.days && task.due_date.beginning_of_day >= Time.now.beginning_of_day+3.days %>
 			<td class="label label-info"><%= task.due_date %></td>
