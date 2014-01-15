@@ -4,6 +4,8 @@
 
 <%=	render partial: "colors" %>
 <p><%= link_to "Create New Task", new_task_path, class: "btn" %></p>
+<p>Current Time: <%= Time.now %></p>
+<p>Beginning of Day Time: <%= Time.now.beginning_of_day %></p>
 
 <%= will_paginate %>
 
