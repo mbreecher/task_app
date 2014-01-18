@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131210172029) do
+ActiveRecord::Schema.define(version: 20140116185904) do
 
   create_table "customers", force: true do |t|
     t.integer  "csm_id"
@@ -25,6 +25,23 @@ ActiveRecord::Schema.define(version: 20131210172029) do
     t.boolean  "single_source"
     t.string   "note"
     t.string   "xbrl_service"
+  end
+
+  create_table "feeder_tasks", force: true do |t|
+    t.string   "name"
+    t.string   "instructions"
+    t.string   "reference"
+    t.integer  "offset"
+    t.integer  "task_set_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "task_sets", force: true do |t|
+    t.string   "name"
+    t.integer  "csm_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tasks", force: true do |t|

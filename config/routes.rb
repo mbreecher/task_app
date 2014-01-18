@@ -3,6 +3,8 @@ SampleApp::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :customers
   resources :tasks
+  resources :task_sets
+  resources :feeder_tasks
   root 'static_pages#home'
 
   match '/signup',  to:'users#new',         via:'get'
@@ -31,6 +33,8 @@ SampleApp::Application.routes.draw do
   match '/team_customers', to: 'customers#team_customers', via: 'get'
   match '/team_users', to: 'users#team_users', via: 'get'
   match '/team_tasks', to: 'tasks#team_tasks', via: 'get'
+
+  match '/my_tasksets', to: 'task_sets#my_tasksets', via: 'get'
 
   #get '/help',  to:'static_pages#help' 
   #get '/about', to:'static_pages#about'

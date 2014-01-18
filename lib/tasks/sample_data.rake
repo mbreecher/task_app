@@ -3,18 +3,18 @@ namespace :db do
 	task populate: :environment do
 		User.create!(	name: "First User",
 						email: "First@webfilings.com",
-						password: "sample",
-						password_confirmation: "sample",
+						password: "Sample-100",
+						password_confirmation: "Sample-100",
 						admin: false)
 		User.create!(	name: "Example User",
 						email: "example@webfilings.com",
-						password: "sample",
-						password_confirmation: "sample",
+						password: "Sample-100",
+						password_confirmation: "Sample-100",
 						admin: true)
 		User.create!(	name: "Mike Breecher",
 						email: "Mike.Breecher@webfilings.com",
-						password: "sample",
-						password_confirmation: "sample",
+						password: "Sample-100",
+						password_confirmation: "Sample-100",
 						admin: true)
 		Customer.create!(	name: "Test Company",
 							start: "1/1/2013",
@@ -25,7 +25,7 @@ namespace :db do
 		99.times do |n|
 			name = Faker::Name.name
 			email = "example-#{n+1}@webfilings.com"
-			password = "sample"
+			password = "Sample-100"
 			User.create!(	name: name,
 							email: email,
 							password: password,
@@ -42,9 +42,13 @@ namespace :db do
 		50.times do |n|
 			Task.create!(	name: "Task #{n+1}",
 							instructions: "how to...",
-							due_date: Date.new(2013 + rand(1), rand(11)+1, rand(30)+1),
+							due_date: Date.new(2014 + rand(1), rand(11)+1, rand(30)+1),
 							customer_id: "#{rand(10)+1}", 
 							csm_id: "#{rand(5)+1}")
+		end
+		10.times do |n|
+			TaskSet.create!(name: "Task Set #{n+1}",
+				csm_id: "#{rand(5)+1}")
 		end
 	end
 end

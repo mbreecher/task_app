@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-helper_method :sort_column, :sort_direction, :toggles!
+helper_method :sort_column, :sort_direction
 
 	def index
 		#@tasks = current_user.tasks.paginate(page: params[:page])

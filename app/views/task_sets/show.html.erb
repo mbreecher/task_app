@@ -1,0 +1,32 @@
+<% provide(:title, @task_set.name)%>
+<div class="row">
+	<aside class="span4">
+		<section>
+			<h1>
+				<%= @task_set.name %>
+			</h1>
+		</secion>
+	</aside>
+</div>
+<p><%= link_to "Add Subtask", new_feeder_task_path(:task_set_id => @task_set.id), class: "btn" %></p>
+<ul>
+	<li><b>Task Set: </b><%= @task_set.name %></li>
+	<% if @task_set.csm_id != nil%>
+		<li><b>CSM: </b><%= User.find_by(id: @task_set.csm_id).name %></li>
+	<% end %>
+</ul>
+
+<table class="table table-hover table-bordered table-condensed">
+	<tr>
+		<th><%= sortable "name", "Task" %></th>
+		<th>Instructions</th>
+		<th><%=	sortable "reference", "Reference" %></th>
+		<th><%=	sortable "offset", "Offset" %></th>
+		<th><%=	sortable "task_set_id", "Task Set" %></th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% if @feeder_tasks != nil%>
+		<%= render @feeder_tasks %>
+	<% end %>
+</table>

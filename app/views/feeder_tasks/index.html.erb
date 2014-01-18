@@ -1,0 +1,17 @@
+<% provide(:title, 'Sub Tasks') %>
+<h1>All Sub tasks</h1>
+
+<table class="table table-hover table-bordered table-condensed">
+	<tr>
+		<th><%= sortable "name", "Task" %></th>
+		<th>Instructions</th>
+		<th><%=	sortable "reference", "Reference" %></th>
+		<th><%=	sortable "offset", "Offset" %></th>
+		<th><%=	sortable "task_set_id", "Task Set" %></th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% if @feeder_tasks != nil%>
+		<%= render @feeder_tasks %>
+	<% end %>
+</table>

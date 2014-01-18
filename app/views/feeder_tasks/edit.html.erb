@@ -1,0 +1,27 @@
+<% provide(:title, 'Edit Sub Task')%>
+<h1>Edit Sub Task</h1>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@feeder_task) do |f| %>
+			<%= render 'shared/feeder_task_errors' %>
+
+			<%= f.label :name, "Sub Task Name" %>
+			<%= f.text_field :name %>
+
+			<%= f.label :instructions, "Instructions" %>
+			<%= f.text_field :instructions %>
+
+			<%= f.label :reference, "Reference Point" %>
+			<%= f.select :reference, ["filing date", "start date"], prompt: 'Select One' %>
+
+			<%= f.label :offset, "Offset (in days)" %>
+			<%= f.text_field :offset %>
+
+			<%= f.label :task_set_id, "Task Set" %>
+			<%= f.collection_select(:task_set_id, TaskSet.where(csm_id: current_user.id), :id, :name) %>
+
+			<%= f.submit "Add Sub Task", class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
+</div>

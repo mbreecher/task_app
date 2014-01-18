@@ -1,0 +1,20 @@
+<% provide(:title, 'Tasks') %>
+<h1>All Task Sets</h1>
+
+<p><%= link_to "Create New Task Set", new_task_set_path, class: "btn" %></p>
+
+<%= will_paginate %>
+
+<table class="table table-hover table-bordered table-condensed">
+	<tr>
+		<th><%= sortable "name", "Name" %></th>
+		<th><%= sortable "csm_id", "CSM" %></th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% if @task_sets != nil%>
+		<%= render @task_sets %>
+	<% end %>
+</table>
+
+<%= will_paginate %>
