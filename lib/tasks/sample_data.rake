@@ -47,8 +47,15 @@ namespace :db do
 							csm_id: "#{rand(5)+1}")
 		end
 		10.times do |n|
-			TaskSet.create!(name: "Task Set #{n+1}",
-				csm_id: "#{rand(5)+1}")
+			TaskSet.create!(	name: "Task Set #{n+1}",
+								csm_id: "#{rand(5)+1}")
+		end
+		50.times do |n|
+			FeederTask.create!(	name:"Sub Task #{n+1}",
+								instructions: "do something",
+								reference: "filing date",
+								offset: "#{rand(30)+1}",
+								task_set_id: "#{rand(9)+1}")
 		end
 	end
 end

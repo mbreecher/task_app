@@ -3,7 +3,7 @@
 	<td><%= feeder_task.instructions %></td>
 	<td><%= feeder_task.reference %></td>
 	<td><%= feeder_task.offset %></td>
-	<td><%= feeder_task.task_set_id %></td>
+	<td><%= link_to feeder_task.task_set.name, task_set_path(feeder_task.task_set_id) %>
 	<td><%= link_to "edit", edit_feeder_task_path(feeder_task) %></td>
 	<% if current_user.admin? %>
 		<td><%= link_to "delete", feeder_task, method: :delete, data: {confirm: "You Sure"} %></td>

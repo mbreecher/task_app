@@ -36,9 +36,6 @@ before_action :admin_user, only: [:index, :edit, :update, :destroy]
 
 	def destroy
 		#let(:tname) {User.find(params[:id]).name}
-		# delete feeders when orphaned
-		@task_set = Taskset.find(params[:id])
-		FeederTask.where("task_set_id = ?", @task_set_id).destroy
 		TaskSet.find(params[:id]).destroy
 		flash[:success] = "Task Set deleted."
 		redirect_to my_tasksets_path
@@ -66,6 +63,7 @@ before_action :admin_user, only: [:index, :edit, :update, :destroy]
 	  	end
 	    def sort_column
 	    	TaskSet.column_names.include?(params[:sort]) ? params[:sort] : "id"
+	    	FeederTask.column_names.include?(params[:sort]) ? params[:sort] : "id"
 	    end
 	    def sort_direction
 	    	%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
