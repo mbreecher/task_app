@@ -17,6 +17,7 @@ before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
 
 	def show
 		@customer = Customer.find(params[:id])
+		@tasks = Task.where("customer_id = ?", @customer.id).order(sort_column + " " + sort_direction)
 	end
 
 	def new

@@ -1,0 +1,14 @@
+<% provide(:title, 'Apply Task Set')%>
+<h1>Apply Task Set to Customer</h1>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_tag apply_task_set_path do %>
+
+			<%= collection_select(:customer, :id, current_user.customers.order('name ASC'), :id, :name, {selected: @customer.id}) %>
+
+			<%= collection_select(:task_set, :id, TaskSet.where(csm_id: current_user.id), :id, :name) %>
+		<%= submit_tag 'Make New Tasks', class: 'btn' %>
+		<% end %>
+	</div>
+</div>

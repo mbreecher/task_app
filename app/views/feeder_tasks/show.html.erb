@@ -1,0 +1,16 @@
+<% provide(:title, @feeder_task.name)%>
+<div class="row">
+	<aside class="span4">
+		<section>
+			<h1>
+				<%= @feeder_task.name %>
+			</h1>
+		</secion>
+	</aside>
+</div>
+<ul>
+	<li><b>Instructions: </b><%= @feeder_task.instructions %></li>
+	<li><b>Reference: </b><%= @feeder_task.reference %></li>
+	<li><b>Offset: </b><%= @feeder_task.offset %></li>
+	<li><b>Feeder: </b><%= @feeder_task.task_set.name %></li>
+</ul>

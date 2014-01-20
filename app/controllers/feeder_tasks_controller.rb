@@ -12,6 +12,10 @@ def new
 	@task_set = TaskSet.find(params[:task_set_id])
 end
 
+def show
+	@feeder_task = FeederTask.find(params[:id])
+end
+
 def edit
 	@feeder_task = FeederTask.find(params[:id])
 end

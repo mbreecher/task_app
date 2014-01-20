@@ -36,6 +36,9 @@ SampleApp::Application.routes.draw do
 
   match '/my_tasksets', to: 'task_sets#my_tasksets', via: 'get'
 
+  match '/choose_task_set/', to: 'tasks#choose_task_set', via: 'get'
+  match '/apply_task_set/', to: 'tasks#apply_task_set', via: 'post'
+
   #get '/help',  to:'static_pages#help' 
   #get '/about', to:'static_pages#about'
   #get '/contact', to:'static_pages#contact'

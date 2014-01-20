@@ -24,6 +24,27 @@ helper_method :sort_column, :sort_direction
 		@tasks = Task.joins(:user).where("senior = ?", current_user.id).search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page])
 	end
 
+	def choose_task_set
+		@customer = Customer.find(params[:customer_id])
+		@task = Task.new
+	end
+
+	def apply_task_set
+		@customer = Customer.find(params[:customer][:id])
+		@task_set = TaskSet.find(params[:task_set][:id])
+		@task_set.feeder_tasks.each do |sub|
+			new_task = Task.new
+			if sub.reference = "filing date"
+				calc_due = @customer.next_target + sub.offset.to_f.days
+			else
+				calc_due = @customer.start + sub.offset.to_f.days
+			end
+			new_task.update_attributes(name: sub.name, instructions: sub.instructions, reference: sub.reference, offset: sub.offset, csm_id: current_user.id, customer_id: @customer.id, due_date: calc_due)
+			new_task.save
+		end
+		redirect_to @customer
+	end
+
 	def toggle_complete
 	    @task = Task.find(params[:id])
 	    @task.update_attribute(:done, true)
