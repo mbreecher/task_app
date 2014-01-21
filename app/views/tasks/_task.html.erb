@@ -4,7 +4,7 @@
 		<%= task.user.name %>
 	<% end %></td>
 	<td><% if task.customer_id != nil%>
-		<%= task.customer.name %>
+		<%= link_to task.customer.name, customer_path(task.customer_id) %>
 	<% end %></td>
 	<td><%= task.instructions %></td>
 	<% if task.due_date != nil %>
