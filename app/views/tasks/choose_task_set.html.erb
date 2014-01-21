@@ -8,6 +8,9 @@
 			<%= collection_select(:customer, :id, current_user.customers.order('name ASC'), :id, :name, {selected: @customer.id}) %>
 
 			<%= collection_select(:task_set, :id, TaskSet.where(csm_id: current_user.id), :id, :name) %>
+
+			<p>Apply task to all customers: <%= check_box_tag 'all_customers' %></p>
+			
 		<%= submit_tag 'Make New Tasks', class: 'btn' %>
 		<% end %>
 	</div>

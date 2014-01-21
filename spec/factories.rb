@@ -27,3 +27,15 @@ FactoryGirl.define do
 		due_date Date.new(2013,12,1)
 	end
 end
+
+FactoryGirl.define do
+	factory :task_set do
+		sequence(:name) {|n| "Task Set #{n}"}
+	end
+end
+
+FactoryGirl.define do
+	factory :feeder_task do
+		sequence(:name) {|n| "Sub Task #{n}"}
+	end
+end

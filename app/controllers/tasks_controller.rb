@@ -32,15 +32,36 @@ helper_method :sort_column, :sort_direction
 	def apply_task_set
 		@customer = Customer.find(params[:customer][:id])
 		@task_set = TaskSet.find(params[:task_set][:id])
-		@task_set.feeder_tasks.each do |sub|
-			new_task = Task.new
-			if sub.reference = "filing date"
-				calc_due = @customer.next_target + sub.offset.to_f.days
-			else
-				calc_due = @customer.start + sub.offset.to_f.days
+
+		if not params[:all_customers]
+			@task_set.feeder_tasks.each do |sub|
+				new_task = Task.new
+					if sub.reference == "filing date" && @customer.next_target != nil
+						calc_due = @customer.next_target + sub.offset.to_f.days
+						new_task.update_attributes(name: sub.name, instructions: sub.instructions, reference: sub.reference, offset: sub.offset, csm_id: current_user.id, customer_id: @customer.id, due_date: calc_due)
+						new_task.save
+					elsif sub.reference == "start date" &&  @customer.start != nil
+						calc_due = @customer.start + sub.offset.to_f.days
+						new_task.update_attributes(name: sub.name, instructions: sub.instructions, reference: sub.reference, offset: sub.offset, csm_id: current_user.id, customer_id: @customer.id, due_date: calc_due)
+						new_task.save
+					end
 			end
-			new_task.update_attributes(name: sub.name, instructions: sub.instructions, reference: sub.reference, offset: sub.offset, csm_id: current_user.id, customer_id: @customer.id, due_date: calc_due)
-			new_task.save
+		else
+			@customers = current_user.customers
+			@customers.each do |cust|
+				@task_set.feeder_tasks.each do |sub|
+					new_task = Task.new
+						if sub.reference == "filing date" && cust.next_target != nil
+							calc_due = cust.next_target + sub.offset.to_f.days
+							new_task.update_attributes(name: sub.name, instructions: sub.instructions, reference: sub.reference, offset: sub.offset, csm_id: current_user.id, customer_id: cust.id, due_date: calc_due)
+							new_task.save
+						elsif sub.reference == "start date" && cust.start != nil
+							calc_due = cust.start + sub.offset.to_f.days
+							new_task.update_attributes(name: sub.name, instructions: sub.instructions, reference: sub.reference, offset: sub.offset, csm_id: current_user.id, customer_id: cust.id, due_date: calc_due)
+							new_task.save
+						end
+				end
+			end
 		end
 		redirect_to @customer
 	end
