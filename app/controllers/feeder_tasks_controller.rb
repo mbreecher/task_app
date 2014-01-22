@@ -57,7 +57,7 @@ end
 	      end
 	    end
 		def feeder_task_params
-	  		params.require(:feeder_task).permit(:name, :reference, :offset, :task_set_id)
+	  		params.require(:feeder_task).permit(:name, :instructions, :reference, :offset, :task_set_id)
 	  	end
 	    def sort_column
 	    	FeederTask.column_names.include?(params[:sort]) ? params[:sort] : "id"
