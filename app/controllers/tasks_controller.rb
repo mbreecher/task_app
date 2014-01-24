@@ -128,7 +128,7 @@ helper_method :sort_column, :sort_direction
 
 	private
 		def task_params
-	  		params.require(:task).permit(:name, :instructions, :csm_id, :customer_id, :due_date, :note)
+	  		params.require(:task, :csm_id).permit(:name, :instructions, :customer_id, :due_date, :note)
 	  	end
 
 		def signed_in_user
