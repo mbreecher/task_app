@@ -82,7 +82,7 @@ helper_method :sort_column, :sort_direction
 	def show
 		@task = Task.find(params[:id])
 		if current_user?(User.find(@task.csm_id)) || current_user.admin?
-			@task = Task.find(params[:id])
+			@task
 		else
 	    	redirect_to(root_url)
 		end
