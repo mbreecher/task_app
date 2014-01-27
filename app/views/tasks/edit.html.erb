@@ -18,7 +18,7 @@
 
 			<% if current_user.is_senior %>
 				<%= f.label :csm_id, "CSM" %>
-				<%= f.collection_select(:csm_id, User.where(senior: current_user.id).order('name ASC'), :id, :name) %>
+				<%= f.collection_select(:csm_id, User.where("senior = ? OR id = ?", current_user.id, current_user.id).order('name ASC'), :id, :name, {selected: current_user.id}) %>
 			<% else %>
 				<%= f.label :csm_id, "CSM" %>
 				<%= f.collection_select(:csm_id, User.where(id: current_user.id).order('name ASC'), :id, :name) %>

@@ -48,14 +48,18 @@ before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
 	end
 
 	def create
-	  	@customer = Customer.new(customer_params)
-	  	if @customer.save
-	  		flash[:success] = "Customer Created"
-	  		#redirect_to customer_path(@customer)
-	  		redirect_to accounts_path
-	  	else
-	  		render 'new'
-	  	end
+		if customer_params[:id] != nil
+		  	@customer = Customer.new(customer_params)
+		  	if @customer.save
+		  		flash[:success] = "Customer Created"
+		  		#redirect_to customer_path(@customer)
+		  		redirect_to accounts_path
+		  	else
+		  		render 'new'
+		  	end
+		else
+		  	render 'new'
+		end
 	end
 
 	private
