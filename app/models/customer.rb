@@ -5,10 +5,10 @@ class Customer < ActiveRecord::Base
 	validates :name, presence: true, length: {maximum: 50}
 	validates :start, presence: true
 	validates :csm_id, presence: true
-	validates_date :start
-	validates_date :fiscal_ye
-	validates_date :next_target
-	validates_date :next_per_end
+	#validates_date :start
+	#validates_date :fiscal_ye
+	#validates_date :next_target
+	#validates_date :next_per_end
 
 	def self.search(search)
 		if search
@@ -32,7 +32,7 @@ class Customer < ActiveRecord::Base
 		(2..spreadsheet.last_row).each do |i|
 			row = Hash[[header, spreadsheet.row(i)].transpose]
 			check = find_by_id(row["id"])
-			if row["id"] == nil || check.csm_id == csm_id	
+			if row["id"] == nil || check.csm_id == csm_id
 				customer = find_by_id(row["id"]) || new
 				customer.attributes = row.to_hash.select { |k,v| allowed_attr.include? k}
 				customer.csm_id = csm_id
