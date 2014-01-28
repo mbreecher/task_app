@@ -5,6 +5,7 @@
 
 <p>download
 	<%= link_to "CSV", accounts_path(format: "csv")	%>
+	<!--<%= link_to "Excel", accounts_path(format: "xls")	%>-->
 </p>	
 
 <%= form_tag accounts_path, method: 'get' do %>
@@ -32,3 +33,9 @@
 </table>
 
 <%= will_paginate %>
+
+<b>Import CSV File</b>
+<%=	form_tag import_customers_path, multipart: true do %>
+<%= file_field_tag :file %>
+<%= submit_tag "Import" %>
+<% end %>

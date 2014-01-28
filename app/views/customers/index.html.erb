@@ -2,9 +2,7 @@
 <div><h1>All customers</h1>
 
 <p><%= link_to "Create New Customer", new_customer_path, class: "btn" %></p>
-<p>download
-	<%= link_to "CSV", customers_path(format: "csv")	%>
-</p>	
+
 <%= form_tag accounts_path, method: 'get' do %>
 	<%= render partial: 'shared/search' %>
 <% end %>

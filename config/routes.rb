@@ -1,7 +1,9 @@
 SampleApp::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :customers
+  resources :customers do
+    collection {post :import}
+  end
   resources :tasks
   resources :task_sets
   resources :feeder_tasks

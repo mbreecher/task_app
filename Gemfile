@@ -7,6 +7,9 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.1.2' #fake user generation
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
+gem 'roo'
+gem 'iconv'
+gem 'validates_timeliness', '~> 3.0'
 
 #gem 'pg', '0.12.2' --add in section 3.6
 

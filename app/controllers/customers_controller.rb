@@ -9,6 +9,16 @@ before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
 	def accounts
 		#@customers = current_user.customers.joins(:user, :customer).order(sort_column + " " + sort_direction).paginate(page: params[:page])
 		@customers = current_user.customers.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page])
+		respond_to do |format|
+			format.html
+			format.csv {send_data @customers.to_csv}
+			#format.xls 		
+		end
+	end
+
+	def import
+		Customer.import(params[:file], current_user.id)
+		redirect_to accounts_path, notice: "Accounts Imported."
 	end
 
 	def team_customers
@@ -48,18 +58,15 @@ before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
 	end
 
 	def create
-		if customer_params[:id] != nil
-		  	@customer = Customer.new(customer_params)
-		  	if @customer.save
-		  		flash[:success] = "Customer Created"
-		  		#redirect_to customer_path(@customer)
-		  		redirect_to accounts_path
-		  	else
-		  		render 'new'
-		  	end
-		else
-		  	render 'new'
-		end
+		@customer = Customer.new(customer_params)
+		@customer.csm_id = current_user.id
+	  	if @customer.save
+	  		flash[:success] = "Customer Created"
+	  		#redirect_to customer_path(@customer)
+	  		redirect_to accounts_path
+	  	else
+	  		render 'new'
+	  	end
 	end
 
 	private
