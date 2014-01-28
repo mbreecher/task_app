@@ -31,11 +31,14 @@ class Customer < ActiveRecord::Base
 		header = spreadsheet.row(1)
 		(2..spreadsheet.last_row).each do |i|
 			row = Hash[[header, spreadsheet.row(i)].transpose]
-			customer = find_by_id(row["id"]) || new
-			customer.attributes = row.to_hash.select { |k,v| allowed_attr.include? k}
-			customer.csm_id = csm_id
-			if customer.name != nil && customer.start != nil && customer.csm_id != nil
-				customer.save
+			check = find_by_id(row["id"])
+			if row["id"] == nil || check.csm_id == csm_id	
+				customer = find_by_id(row["id"]) || new
+				customer.attributes = row.to_hash.select { |k,v| allowed_attr.include? k}
+				customer.csm_id = csm_id
+				if customer.name != nil && customer.start != nil && customer.csm_id != nil
+					customer.save
+				end
 			end
 		end
 	end
