@@ -100,9 +100,9 @@ helper_method :sort_column, :sort_direction
 		@task = Task.find(params[:id])
 		if @task.update_attributes(task_params)
 		  #handle a successful update
-		  flash[:success] = "Task updated"
-		  #redirect_to @task
-		  redirect_to workspace_path
+	  		flash[:success] = "Task updated"
+	  		#redirect_to @task
+	  		redirect_to workspace_path
 		else
 			render 'edit'
 		end
@@ -128,7 +128,7 @@ helper_method :sort_column, :sort_direction
 
 	private
 		def task_params
-	  		params.require(:task).permit(:name, :instructions, :customer_id, :due_date, :note)
+	  		params.require(:task).permit(:name, :csm_id, :instructions, :customer_id, :due_date, :note)
 	  	end
 
 		def signed_in_user
